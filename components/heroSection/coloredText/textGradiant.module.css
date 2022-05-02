@@ -1,0 +1,20 @@
+/* Basic Styling */
+
+.text{
+  font-size: 4rem;
+  font-weight: 900;
+  background-image: linear-gradient(to right, #c702ad, #f7005f, #05d7e6);
+  -webkit-background-clip: text; 
+  background-clip: text; 
+  color: transparent;
+  background-size: 300%;
+  background-position: -100%;  
+  animation: animatedText 10s infinite alternate-reverse;
+}
+
+@keyframes animatedText{
+  to{
+    background-position: 100%; 
+  }
+}
+

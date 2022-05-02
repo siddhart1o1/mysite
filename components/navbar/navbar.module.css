@@ -1,0 +1,65 @@
+
+
+.TOP {
+  
+  padding-top: 3rem;
+  
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.logo {
+  margin: 1rem;
+  font-size: 1.4rem;
+  cursor: default;
+  font-weight: 600;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  flex-shrink: inherit;
+}
+
+.Links {
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 1rem;
+  cursor: default;
+  transition: all 0.2s ease-in-out;
+}
+
+.Links:hover {
+  color: #00b8a8;
+  border-bottom: 2px solid #11e4d9;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+}
+
+.LinkedInIcon {
+  color: #0077b5;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+}
+
+.GithubIcon {
+  color: #000000;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+}
+
+.active {
+  transition: all 0.3s;
+  color: #00b8a8;
+  pointer-events: none;
+}
