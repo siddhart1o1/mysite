@@ -1,180 +1,268 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { PureComponent } from "react";
 import { Fragment } from "react";
 import styles from "./styles/TopProject.module.css";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+import { useAnimation } from "framer-motion";
 
 export default function TopProject(props) {
-  const array = props.props;
-  const Project1 = array.find((x) => x.Rank === 1);
-  const Project2 = array.find((x) => x.Rank === 2);
-  const Project3 = array.find((x) => x.Rank === 3);
+  const animation = useAnimation();
+  const animation1 = useAnimation();
+  const animation2 = useAnimation();
+  const animation3 = useAnimation();
 
-    return (
-      <div className="mt-40 bg-zinc-900 ">
-        <div className="max-w-6xl mx-auto">
-          <header className="flex flex-col md:flex-row justify-between items-center pt-20  md:my-20 lg:my-0">
-            <div className={styles.Heading}>PROJECTS</div>
-          </header>
-          <div className={styles.Heading2}>Some Projects I have Worked on.</div>
-          {/* Grid starts here */}
+  const { ref, inView } = useInView({ triggerOnce: true });
+  const [ref1, inView1] = useInView({ triggerOnce: true });
+  const [ref2, inView2] = useInView({ triggerOnce: true });
+  const [ref3, inView3] = useInView({ triggerOnce: true });
 
-          <div className="grid md:grid-cols-3 gap-9 lg:mt-3 pb-40 ">
-            {/* Single card */}
-            <a
-              href="https://tailwindmasterkit.com"
-              className="w-full block col-span-3 shadow-2xl  "
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        x: "0vw",
+        transition: {
+          type: "string",
+          duration: 1,
+          bounce: 0.3,
+        },
+      });
+    }
+    if (!inView) {
+      animation.start({
+        x: "-50vw",
+      });
+    }
+  }, [inView]);
+
+
+
+  
+  useEffect(() => {
+    if (inView1) {
+      animation1.start({
+        x: "0vw",
+        transition: {
+          type: "string",
+          duration: 3,
+          bounce: 0.3,
+        },
+        opacity: 1,
+      });
+    }
+    if (!inView1) {
+      animation1.start({
+        x: "-60vw",
+        opacity: 0,
+      });
+    }
+  }, [inView1]);
+
+
+
+
+  useEffect(() => {
+    if (inView2) {
+      animation2.start({
+        x: "0vw",
+        transition: {
+          type: "string",
+          duration: 3,
+          bounce: 0.3,
+        },
+        opacity: 1,
+      });
+    }
+    if (!inView2) {
+      animation2.start({
+        x: "-25vw",
+        opacity: 0,
+      });
+    }
+  }, [inView2]);
+
+
+  useEffect(() => {
+    if (inView3) {
+      animation3.start({
+        x: "0vw",
+        transition: {
+          type: "string",
+          duration: 3,
+          bounce: 0.3,
+        },
+        opacity: 1,
+      });
+    }
+    if (!inView3) {
+      animation3.start({
+        x: "50vw",
+        opacity: 0,
+      });
+    }
+  }, [inView3]);
+
+
+
+
+
+  return (
+    <Fragment>
+      <div className={styles.SVG}></div>
+      <div className={styles.TOPPEST}>
+        <div className={styles.TOP}>
+          <div className={styles.container}>
+            <motion.div
+              ref={ref}
+              animate={animation}
+              className={styles.topProject}
             >
-              <div className="relative overflow-hidden rounded-xl border-2 border-teal-300">
-                <img
-                  src="/Test.png"
-                  alt="portfolio"
-                  className="transform hover:scale-125 hover:blur-sm  transition duration-2000 ease-out"
-                />
-                <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-                  CRF
-                </h1>
-                <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-                  01
-                </h1>
+              <div className={styles.heading}>Projects</div>
+              <div className={styles.heading1}>
+                Some of my favorite projects on which I have worked.
               </div>
-            </a>
-            {/* Single card */}
+            </motion.div>
 
-            <a
-              href="https://placeholdertech.in"
-              className="w-full block col-span-3   sm:col-span-2 shadow-2xl hover:shadow-xl"
-            >
-              <div className="relative overflow-hidden rounded-xl border-2 border-teal-300">
-                <img
-                  src="/Test.png"
-                  alt="portfolio"
-                  className="transform hover:scale-125 transition duration-2000 ease-out hover:blur-sm"
-                />
-                <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-                  GITHUB
-                </h1>
-                <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-                  02
-                </h1>
+            <motion.div ref={ref1} animate={animation1} className={styles.Row1}>
+              <div className={styles.Project1}>
+                <img src="Test.png" className={styles.Project_image} />
+                <div className={styles.Project_1_Content}>
+                  <div className={styles.content}>
+                    <h1 className={styles.content_Heading}>CRF</h1>
+                    <div className={styles.content_para}>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Numquam deserunt culpa ducimus nostrum. Aperiam,
+                        doloribus earum placeat sint perspiciatis officiis sequi
+                        nam autem porro quae dolore maxime debitis natus
+                        facilis?
+                      </p>
+                    </div>
+                    <div>
+                      <button className={styles.content_buttons}>VISIT</button>
+                      <button className={styles.content_buttons}>
+                        READ MORE
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </a>
 
-            {/* Single card */}
-            <a
-              href="https://manuarora.in"
-              className="w-full block col-span-3 sm:col-span-1  object-cover"
-            >
-              <div className="relative overflow-hidden rounded-xl shadow-2xl border-2 border-teal-300">
-                <img
-                  src="/Test.png"
-                  alt="portfolio"
-                  className="transform hover:scale-125 transition duration-2000 ease-out object-cover shadow-2xl hover:blur-sm"
-                />
-                <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-                  Portfolio
-                </h1>
-                <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-                  03
-                </h1>
+              <div className={styles.Project1}>
+                <img src="Test.png" className={styles.Project_image} />
+                <div className={styles.Project_1_Content}>
+                  <div className={styles.content}>
+                    <h1 className={styles.content_Heading}>CRF</h1>
+                    <div className={styles.content_para}>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Numquam deserunt culpa ducimus nostrum. Aperiam,
+                        doloribus earum placeat sint perspiciatis officiis sequi
+                        nam autem porro quae dolore maxime debitis natus
+                        facilis?
+                      </p>
+                    </div>
+                    <div>
+                      <button className={styles.content_buttons}>VISIT</button>
+                      <button className={styles.content_buttons}>
+                        READ MORE
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </a>
+            </motion.div>
+
+            <div className={styles.Row2}>
+              <motion.div
+                ref={ref2}
+                animate={animation2}
+                className={styles.Row2_1st}
+              >
+                <div className={styles.Project3}>
+                  <img src="Test.png" className={styles.Project_image} />
+                  <div className={styles.Project_1_Content}>
+                    <div className={styles.content}>
+                      <h1 className={styles.content_Heading}>CRF</h1>
+                      <div className={styles.content_para}>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit.
+                        </p>
+                      </div>
+                      <div>
+                        <button className={styles.content_buttons}>
+                          VISIT
+                        </button>
+                        <button className={styles.content_buttons}>
+                          READ MORE
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.Project3}>
+                  <img src="Test.png" className={styles.Project_image} />
+                  <div className={styles.Project_1_Content}>
+                    <div className={styles.content}>
+                      <h1 className={styles.content_Heading}>CRF</h1>
+                      <div className={styles.content_para}>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit.
+                        </p>
+                      </div>
+                      <div>
+                        <button className={styles.content_buttons}>
+                          VISIT
+                        </button>
+                        <button className={styles.content_buttons}>
+                          READ MORE
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                ref={ref3}
+                animate={animation3}
+                className={styles.Row2_2nd}
+              >
+                <div className={styles.Project5}>
+                  <img src="Test.png" className={styles.Project_image} />
+                  <div className={styles.Project_1_Content}>
+                    <div className={styles.content}>
+                      <h1 className={styles.content_Heading}>CRF</h1>
+                      <div className={styles.content_para}>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Numquam deserunt culpa ducimus nostrum. Aperiam,
+                          doloribus earum placeat sint perspiciatis officiis
+                          sequi nam autem porro quae dolore maxime debitis natus
+                          facilis?
+                        </p>
+                      </div>
+                      <div>
+                        <button className={styles.content_buttons}>
+                          VISIT
+                        </button>
+                        <button className={styles.content_buttons}>
+                          READ MORE
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
+          <br />
         </div>
       </div>
-    );
-  // }
-
-  // return (
-  //   <div className="mt-40 bg-zinc-900 ">
-  //     <div className="max-w-6xl mx-auto">
-  //       <header className="flex flex-col md:flex-row justify-between items-center pt-20  md:my-20 lg:my-0">
-  //         <div className={styles.Heading}>PROJECTS</div>
-  //       </header>
-  //       <div className={styles.Heading2}>Some Projects I have Worked on.</div>
-  //       {/* Grid starts here */}
-
-  //       <div className="grid md:grid-cols-2 gap-9 lg:mt-3 pb-40 ">
-  //         {/* Single card */}
-  //         <a
-  //           href="https://manuarora.in"
-  //           className="w-5/12  grid-cols-1 grid-rows-1	  sm:col-span-2 object-cover"
-  //         >
-  //           <div className="relative overflow-hidden rounded-xl shadow-2xl border-2 border-teal-300">
-  //             <img
-  //               src="/Test.png"
-  //               alt="portfolio"
-  //               className="transform hover:scale-125 transition duration-2000 ease-out object-cover shadow-2xl hover:blur-sm"
-  //             />
-  //             <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-  //               Portfolio
-  //             </h1>
-  //             <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-  //               03
-  //             </h1>
-  //           </div>
-  //         </a>
-  //         {/* Single card */}
-
-  //         <a
-  //           href="https://manuarora.in"
-  //           className="w-5/12   grid-cols-2 grid-rows-1   sm:col-span-2  object-cover"
-  //         >
-  //           <div className="relative overflow-hidden rounded-xl shadow-2xl border-2 border-teal-300">
-  //             <img
-  //               src="/Test.png"
-  //               alt="portfolio"
-  //               className="transform hover:scale-125 transition duration-2000 ease-out object-cover shadow-2xl hover:blur-sm"
-  //             />
-  //             <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-  //               Portfolio
-  //             </h1>
-  //             <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-  //               03
-  //             </h1>
-  //           </div>
-  //         </a>
-
-  //         {/* Single card */}
-  //         <a
-  //           href="https://manuarora.in"
-  //           className="w-5/12  grid-cols-1 grid-rows-2 	  sm:col-span-2  object-cover"
-  //         >
-  //           <div className="relative overflow-hidden rounded-xl shadow-2xl border-2 border-teal-300">
-  //             <img
-  //               src="/Test.png"
-  //               alt="portfolio"
-  //               className="transform hover:scale-125 transition duration-2000 ease-out object-cover shadow-2xl hover:blur-sm"
-  //             />
-  //             <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-  //               Portfolio
-  //             </h1>
-  //             <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-  //               03
-  //             </h1>
-  //           </div>
-  //         </a>
-
-  //         {/* sigle */}
-  //         <a
-  //           href="https://manuarora.in"
-  //           className="w-5/12  grid-cols-1 grid-rows-2  sm:col-span-2  object-cover"
-  //         >
-  //           <div className="relative overflow-hidden rounded-xl shadow-2xl border-2 border-teal-300">
-  //             <img
-  //               src="/Test.png"
-  //               alt="portfolio"
-  //               className="transform hover:scale-125 transition duration-2000 ease-out object-cover shadow-2xl hover:blur-sm"
-  //             />
-  //             <h1 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-blue-500 rounded-md px-2">
-  //               Portfolio
-  //             </h1>
-  //             <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
-  //               03
-  //             </h1>
-  //           </div>
-  //         </a>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
+    </Fragment>
+  );
 }
